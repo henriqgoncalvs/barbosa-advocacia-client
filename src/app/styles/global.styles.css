@@ -1,0 +1,33 @@
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind components;
+
+body {
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif !important;
+  font-weight: 400;
+}
+
+a {
+  cursor: pointer;
+}
+
+@layer components {
+  .btn-primary-filled {
+    @apply rounded-none bg-primary-c-500 hover:bg-primary-c-300 text-white inline-block py-3 px-8 text-sm font-medium leading-normal transition duration-200 uppercase;
+  }
+
+  .btn-primary-outline {
+    @apply rounded-none border-4 border-primary-c-500 hover:border-primary-c-300 hover:bg-primary-c-300 hover:text-white text-primary-c-500 inline-block py-2 px-8 text-sm font-medium leading-normal transition duration-200 uppercase;
+  }
+
+  .btn-secondary-filled {
+    @apply rounded-none bg-white hover:bg-gray-200 text-primary-c-500 inline-block py-3 px-8 text-sm font-medium leading-normal transition duration-200 uppercase;
+  }
+
+  .btn-secondary-outline {
+    @apply rounded-none border-4 border-white hover:border-gray-200 hover:bg-gray-200 hover:text-primary-c-500 text-white inline-block py-2 px-8 text-sm font-medium leading-normal transition duration-200 uppercase;
+  }
+
+}
+
