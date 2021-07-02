@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-function Navbar({ dark }: { dark?: boolean }) {
+function Navbar({ dark, contact }: { dark?: boolean; contact: string }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -26,13 +26,14 @@ function Navbar({ dark }: { dark?: boolean }) {
             </Link>
             <div className="lg:hidden">
               <button
-                className="navbar-burger flex items-center p-3 hover:bg-gray-50 rounded"
+                className="navbar-burger flex items-center p-3 hover:bg-primary-c-400 rounded"
                 onClick={toggleMobileMenu}
               >
                 <svg
-                  className="block h-6 w-6 text-primary-c-500"
+                  className="block h-6 w-6"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
+                  fill={dark ? 'white' : 'text-primary-c-500'}
                 >
                   <title>Menu Mobile</title>
                   <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
@@ -52,6 +53,7 @@ function Navbar({ dark }: { dark?: boolean }) {
               </Link>
               <a
                 className={dark ? 'btn-secondary-filled' : 'btn-primary-filled'}
+                href={`https://api.whatsapp.com/send?phone=${contact}`}
               >
                 Entre em contato
               </a>
@@ -74,7 +76,7 @@ function Navbar({ dark }: { dark?: boolean }) {
             </a>
             <button className="navbar-close" onClick={toggleMobileMenu}>
               <svg
-                className="h-8 w-8 -mt-5 text-white cursor-pointer hover:text-gray-200"
+                className="h-12 w-12 -mt-1 text-white cursor-pointer hover:bg-primary-c-400 rounded-lg p-1"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -91,12 +93,15 @@ function Navbar({ dark }: { dark?: boolean }) {
           </div>
           <div className="mt-auto">
             <div className="pt-6">
-              <a className="block mb-2 w-max btn-secondary-filled" href="#">
+              <a
+                className="block mb-2 w-max btn-secondary-filled"
+                href={`https://api.whatsapp.com/send?phone=${contact}`}
+              >
                 Entre em contato
               </a>
-              <a className="block w-max btn-secondary-outline" href="#">
-                Blog
-              </a>
+              <Link href="/blog">
+                <a className="block w-max btn-secondary-outline">Blog</a>
+              </Link>
             </div>
             <img src="/images/illust-codigo.png" className="my-10" />
             <p className="mt-6 mb-4 text-sm text-center text-gray-200">
