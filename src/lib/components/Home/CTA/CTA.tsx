@@ -1,4 +1,6 @@
-function CTA() {
+import { CTAProps } from 'lib/types/api';
+
+function CTA({ data }: { data: CTAProps }) {
   return (
     <section className="relative py-16 bg-primary-c-500 text-white">
       <img
@@ -14,7 +16,7 @@ function CTA() {
       <div className="relative container px-4 mx-auto">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="mt-8 mb-6 lg:mb-10 text-5xl font-semibold">
-            Take quick action that increases your brands regular profit.
+            {data.title}
           </h2>
           <a
             className="inline-block w-full md:w-auto mb-2 mr-4 py-4 px-8 text-md uppercase font-bold leading-normal bg-white hover:bg-gray-400 text-primary-c-500 transition duration-200"

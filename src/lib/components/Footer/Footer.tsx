@@ -91,7 +91,8 @@ function Footer() {
         </div>
       </div>
       <p className="text-center text-sm text-gray-200 pt-8 px-4 border-t">
-        Todos os direitos reservados à Barbosa Advocacia. 2021.
+        Todos os direitos reservados à Barbosa Advocacia.{' '}
+        {new Date().getFullYear()}.
       </p>
     </section>
   );
