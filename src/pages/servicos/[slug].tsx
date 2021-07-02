@@ -1,10 +1,30 @@
 import { BsArrowRight } from 'react-icons/bs';
+import _ from 'lodash';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 
+import client from 'core/graphql/client';
+import GET_FOOTER from 'core/graphql/queries/getFooter';
+import GET_SERVICE from 'core/graphql/queries/getService';
+import GET_SERVICES, {
+  GET_SERVICES_SLUG,
+} from 'core/graphql/queries/getServices';
 import Footer from 'lib/components/Footer';
 import Navbar from 'lib/components/Navbar';
 import ServicesCarousel from 'lib/components/ServicesCarousel';
+import { FooterProps } from 'lib/types/footer';
+import { ServiceProps } from 'lib/types/services';
 
-function Servico() {
+import markdownToHTML from '@utils/markdownToHTML';
+
+function Servico({
+  service,
+  services,
+  footer,
+}: {
+  service: ServiceProps;
+  services: ServiceProps[];
+  footer: FooterProps;
+}) {
   return (
     <>
       <Navbar dark />
@@ -13,40 +33,78 @@ function Servico() {
           <div className="max-w-4xl mx-auto">
             <div className="mb-16">
               <h2 className="mb-6 text-4xl md:text-5xl font-semibold font-heading">
-                Aposentadoria
+                {service.title}
               </h2>
-              <a className="flex mt-8 w-max items-center text-white font-medium justify-center hover:opacity-70 transition duration-200">
+              <a
+                href={service.contact_url}
+                className="flex mt-8 w-max items-center text-white font-medium justify-center hover:opacity-70 transition duration-200"
+              >
                 Contratar
                 <BsArrowRight color="#fff" size={22} className="ml-2" />
               </a>
             </div>
-            <p className="mb-6 text-lg lg:text-xl text-gray-300">
-              Building websites from wireframes that I had received. Some of
-              those questions were: <br />
-              These types of questions led me to miss numerous deadlines, and I
-              wasted time and energy in back-and-forth communication. Sadly,
-              this situation could have been avoided if the wireframes had
-              provided enough detail. <br />
-              Now that I am a UX designer, I notice that some designers tend to
-              forget that wireframes are equally creative and technical. We are
-              responsible for designing great ideas, but we are also responsible
-              for creating product specifications. I admit that there can be so
-              many details to remember that it’s easy to lose track. To save
-              time and energy for myself, I gathered all of my years of
-              wireframing knowledge into a single checklist that I refer to
-              throughout the process. And now I am sharing this knowledge with
-              you, so that you can get back to being creative.
-            </p>
-            <a className="btn-secondary-filled mt-6" href="#">
+            <div
+              className="mb-6 text-lg lg:text-xl text-gray-300"
+              dangerouslySetInnerHTML={{ __html: service.long_description }}
+            />
+            <a className="btn-secondary-filled mt-6" href={service.contact_url}>
               Contratar
             </a>
           </div>
         </div>
       </section>
-      <ServicesCarousel title="Veja outros serviços" />
-      <Footer />
+      <ServicesCarousel services={services} title="Veja outros serviços" />
+      <Footer data={footer} />
     </>
   );
 }
 
 export default Servico;
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { servicos } = await client.request(GET_SERVICES_SLUG);
+  const paths = servicos.map((service: { slug: string }) => ({
+    params: {
+      slug: service.slug,
+    },
+  }));
+
+  return {
+    fallback: 'blocking',
+    paths,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async (
+  ctx: GetStaticPropsContext,
+) => {
+  const slug = ctx.params?.slug;
+  const { servicos }: { servicos: ServiceProps[] } = await client.request(
+    GET_SERVICE,
+    {
+      slug: slug,
+    },
+  );
+  const { servicos: allservicos }: { servicos: ServiceProps[] } =
+    await client.request(GET_SERVICES);
+
+  const { footer } = await client.request(GET_FOOTER);
+
+  const filteredServices = _.partition<ServiceProps>(allservicos, function (o) {
+    return o.id !== servicos[0].id;
+  });
+
+  const servico = {
+    ...servicos[0],
+    long_description: await markdownToHTML(servicos[0].long_description),
+  };
+
+  return {
+    props: {
+      service: servico,
+      services: filteredServices[0],
+      footer,
+    },
+    revalidate: 10,
+  };
+};

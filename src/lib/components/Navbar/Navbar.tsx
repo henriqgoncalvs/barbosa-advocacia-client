@@ -9,13 +9,19 @@ function Navbar({ dark }: { dark?: boolean }) {
   };
 
   return (
-    <section className={`py-3 ${dark && 'bg-primary-c-500 text-white'}`}>
+    <section className={`py-3 ${dark && 'bg-primary-c-500 text-white pt-6'}`}>
       <div className={`container px-4 mx-auto`}>
         <nav className="relative">
           <div className="flex justify-between items-center">
             <Link href="/" passHref>
               <a className="text-lg font-medium">
-                <img src="/images/logo.png" alt="Barbosa Advocacia" />
+                <img
+                  src={`${
+                    dark ? '/images/logo_white.png' : '/images/logo.png'
+                  }`}
+                  alt="Barbosa Advocacia"
+                  className={`${dark ? 'w-28' : 'w-16'}`}
+                />
               </a>
             </Link>
             <div className="lg:hidden">
@@ -40,14 +46,12 @@ function Navbar({ dark }: { dark?: boolean }) {
                   className={`mr-2 ${
                     dark ? 'btn-secondary-outline' : 'btn-primary-outline'
                   }`}
-                  href="#"
                 >
                   Blog
                 </a>
               </Link>
               <a
                 className={dark ? 'btn-secondary-filled' : 'btn-primary-filled'}
-                href="#"
               >
                 Entre em contato
               </a>
@@ -62,7 +66,11 @@ function Navbar({ dark }: { dark?: boolean }) {
         <nav className="fixed top-0 right-0 bottom-0 flex flex-col w-full max-w-sm py-6 px-6 bg-primary-c-500 border-r overflow-y-auto">
           <div className="flex items-center mb-8">
             <a className="mr-auto text-2xl font-medium leading-none" href="#">
-              <img src="images/logo.png" alt="Barbosa Advocacia" />
+              <img
+                src="images/logo_white.png"
+                className="w-32"
+                alt="Barbosa Advocacia"
+              />
             </a>
             <button className="navbar-close" onClick={toggleMobileMenu}>
               <svg

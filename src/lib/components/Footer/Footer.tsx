@@ -4,21 +4,23 @@ import { IoLogoWhatsapp } from 'react-icons/io';
 import { MdEmail } from 'react-icons/md';
 import Link from 'next/link';
 
-function Footer() {
+import { FooterProps } from 'lib/types/footer';
+
+function Footer({ data }: { data: FooterProps }) {
   return (
     <section className="py-12 lg:py-20 bg-primary-c-500 text-white">
       <div className="container mx-auto px-4 mb-12 md:mb-20">
         <div className="flex flex-wrap -mx-4">
           <div className="w-full lg:w-1/3 px-4 mb-6 lg:mb-0">
             <Link href="/" passHref>
-              <a
-                className="inline-block text-gray-900 text-lg font-semibold"
-                href="#"
-              >
-                <img src="images/logo.png" alt="" />
+              <a className="inline-block text-gray-900 text-lg font-semibold">
+                <img src="images/logo_white.png" className="w-32 mb-6" alt="" />
               </a>
             </Link>
-            <Link href="#" passHref>
+            <Link
+              href={`https://api.whatsapp.com/send?phone=${data.whatsapp}`}
+              passHref
+            >
               <a className="flex mb-2 w-max items-center font-medium justify-center hover:underline hover:opacity-70 transition duration-200">
                 Entre em contato
                 <BsArrowRight color="#fff" size={22} className="ml-2" />
@@ -33,19 +35,19 @@ function Footer() {
             <div className="flex">
               <a
                 className="flex justify-center items-center w-10 h-10 mr-4 bg-red-50 rounded-full"
-                href="#"
+                href={`https://api.whatsapp.com/send?phone=${data.whatsapp}`}
               >
                 <IoLogoWhatsapp color="#2E3192" />
               </a>{' '}
               <a
                 className="flex justify-center items-center w-10 h-10 mr-4 bg-red-50 rounded-full"
-                href="#"
+                href={`mailto:${data.mail}`}
               >
                 <MdEmail color="#2E3192" />
               </a>{' '}
               <a
                 className="flex justify-center items-center w-10 h-10 mr-4 bg-red-50 rounded-full"
-                href="#"
+                href={`https://www.instagram.com/${data.instagram}`}
               >
                 <AiFillInstagram color="#2E3192" />
               </a>{' '}
@@ -57,10 +59,7 @@ function Footer() {
                 <h3 className="mb-6 text-base font-medium">Endereço</h3>
                 <ul className="text-sm">
                   <li className="mb-4">
-                    <p className="text-gray-300">
-                      Rua do Endereço, 123. Bairro do Endereço, Petrolina.
-                      123456-789
-                    </p>
+                    <p className="text-gray-300">{data.adress}</p>
                   </li>
                 </ul>
               </div>
@@ -68,21 +67,18 @@ function Footer() {
                 <h3 className="mb-6 text-base font-medium">Nossos Serviços</h3>
                 <ul className="text-sm">
                   <li className="mb-4">
-                    <Link href="/servicos/planejamento" passHref>
+                    <Link href="/servicos/planejamento-previdenciario" passHref>
                       <a className="text-gray-200 hover:text-gray-400" href="#">
                         Planejamento Previdenciário
                       </a>
                     </Link>
                   </li>
                   <li className="mb-4">
-                    <a className="text-gray-200 hover:text-gray-400" href="#">
-                      Aposentadoria
-                    </a>
-                  </li>
-                  <li className="mb-4">
-                    <a className="text-gray-200 hover:text-gray-400" href="#">
-                      Serviço
-                    </a>
+                    <Link href="/servicos/aposentadoria">
+                      <a className="text-gray-200 hover:text-gray-400" href="#">
+                        Aposentadoria
+                      </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

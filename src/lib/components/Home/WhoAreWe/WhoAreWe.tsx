@@ -1,7 +1,6 @@
 import { Fragment, useState } from 'react';
 import { MdPlayCircleOutline } from 'react-icons/md';
 import { Dialog, Transition } from '@headlessui/react';
-import Image from 'next/image';
 
 import { QuemSomosProps } from 'lib/types/api';
 
@@ -33,9 +32,7 @@ function WhoAreWe({ data }: { data: QuemSomosProps }) {
             </button>
           </div>
           <div className="relative mx-auto w-1/2 px-4 rounded-lg">
-            <Image
-              width={2700}
-              height={2700}
+            <img
               className="object-cover object-center"
               src="/images/perfil.png"
               alt=""

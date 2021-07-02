@@ -13,10 +13,9 @@ function ServicesCarousel({
   services,
 }: {
   title?: string;
-  services: ServiceProps[];
+  services?: ServiceProps[];
 }) {
   const deviceType = useDeviceType();
-
   return (
     <section className="py-4 bg-primary-c-500 pb-12 text-white">
       {services && (
@@ -40,7 +39,7 @@ function ServicesCarousel({
               >
                 <div className="p-6 md:p-8 h-full">
                   <span className="flex-shrink-0 flex items-center justify-center mb-8 mx-auto">
-                    <img src={service?.icon.url} alt="" className="w-14" />
+                    <img src={service?.icon?.url} alt="" className="w-14" />
                   </span>
                   <div>
                     <h3 className="mb-4 text-2xl font-semibold font-heading">

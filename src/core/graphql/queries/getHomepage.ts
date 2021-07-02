@@ -41,12 +41,29 @@ const GET_HOMEPAGE = gql`
     }
   }
 
+  fragment blog_section on Homepage {
+    blog_section {
+      title
+      artigos {
+        title
+        content
+        banner {
+          url
+        }
+        slug
+        topic
+        created_at
+      }
+    }
+  }
+
   query GET_HOMEPAGE {
     homepage {
       ...hero
       ...servicos_previdencia
       ...quem_somos
       ...cta
+      ...blog_section
     }
   }
 `;

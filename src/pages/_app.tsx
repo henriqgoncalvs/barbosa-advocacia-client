@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 
 import '@styles/global.styles.css';
 import 'tailwindcss/tailwind.css';
@@ -7,8 +8,19 @@ import 'tailwindcss/tailwind.css';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
+      <NextSeo
+        title="Barbosa Advocacia"
+        description="Planejamento Previdenciário e Aposentadorias. ⚖"
+        canonical="https://barbosa-advocacia-client.vercel.app"
+        openGraph={{
+          url: 'https://barbosa-advocacia-client.vercel.app',
+          title: 'Barbosa Advocacia',
+          description: 'Planejamento Previdenciário e Aposentadorias. ⚖',
+          images: [],
+          site_name: 'Barbosa Advocacia',
+        }}
+      />
       <Head>
-        <title>Barbosa Advocacia</title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#2E3192"></meta>
         <meta name="description" content=""></meta>

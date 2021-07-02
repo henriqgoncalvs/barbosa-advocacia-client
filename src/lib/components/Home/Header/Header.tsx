@@ -1,6 +1,6 @@
 import { HeroProps } from 'lib/types/api';
 
-function Header({ data }: { data: HeroProps }) {
+function Header({ data, contact }: { data: HeroProps; contact: string }) {
   return (
     <section className="pb-20">
       <div className="container px-4 mx-auto pt-12">
@@ -17,14 +17,14 @@ function Header({ data }: { data: HeroProps }) {
             <div className="flex flex-wrap">
               <a
                 className="inline-block mb-3 mr-4 text-sm font-medium btn-primary-filled normal-case"
-                href="#"
+                href={`https://api.whatsapp.com/send?phone=${contact}`}
               >
                 Entre em contato
               </a>
             </div>
           </div>
           <div className="relative w-full md:w-1/2 px-4">
-            <img className="relative" src="images/illust-header.png" alt="" />
+            <img className="relative" src="/images/illust-header.png" alt="" />
           </div>
         </div>
       </div>
