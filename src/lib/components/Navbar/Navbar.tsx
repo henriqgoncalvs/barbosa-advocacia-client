@@ -67,7 +67,7 @@ function Navbar({ dark }: { dark?: boolean }) {
           <div className="flex items-center mb-8">
             <a className="mr-auto text-2xl font-medium leading-none" href="#">
               <img
-                src="images/logo_white.png"
+                src="/images/logo_white.png"
                 className="w-32"
                 alt="Barbosa Advocacia"
               />

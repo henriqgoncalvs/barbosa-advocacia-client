@@ -14,7 +14,11 @@ function Footer({ data }: { data: FooterProps }) {
           <div className="w-full lg:w-1/3 px-4 mb-6 lg:mb-0">
             <Link href="/" passHref>
               <a className="inline-block text-gray-900 text-lg font-semibold">
-                <img src="images/logo_white.png" className="w-32 mb-6" alt="" />
+                <img
+                  src="/images/logo_white.png"
+                  className="w-32 mb-6"
+                  alt=""
+                />
               </a>
             </Link>
             <Link
