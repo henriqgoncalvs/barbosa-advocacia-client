@@ -28,7 +28,7 @@ function Blog({
   ];
   return (
     <>
-      <Navbar />
+      <Navbar contact={footer.whatsapp} />
       <div>
         <section className="relative py-12">
           <div className="container px-4 mx-auto">

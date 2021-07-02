@@ -21,7 +21,7 @@ type HomeProps = {
 export default function Home({ homepage, footer }: HomeProps) {
   return (
     <>
-      <Navbar />
+      <Navbar contact={footer.whatsapp} />
       <Header data={homepage.hero} contact={footer.whatsapp} />
       <PrevidenceServices data={homepage.servicos_previdencia} />
       <WhoAreWe data={homepage.quem_somos} />

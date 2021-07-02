@@ -21,7 +21,7 @@ function Article({
 }) {
   return (
     <>
-      <Navbar dark />
+      <Navbar dark contact={footer.whatsapp} />
       <section className="relative pt-20 bg-primary-c-500 text-white">
         <div className="container px-4 mx-auto">
           <div className="relative h-96 mb-16">

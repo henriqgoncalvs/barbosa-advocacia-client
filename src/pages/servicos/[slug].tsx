@@ -27,7 +27,7 @@ function Servico({
 }) {
   return (
     <>
-      <Navbar dark />
+      <Navbar dark contact={footer.whatsapp} />
       <section className="py-20 bg-primary-c-500 text-white">
         <div className="container px-4 mx-auto">
           <div className="max-w-4xl mx-auto">
