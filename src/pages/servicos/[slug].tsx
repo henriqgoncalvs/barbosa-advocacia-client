@@ -1,4 +1,3 @@
-import { BsArrowRight } from 'react-icons/bs';
 import _ from 'lodash';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 
@@ -35,13 +34,13 @@ function Servico({
               <h2 className="mb-6 text-4xl md:text-5xl font-semibold font-heading">
                 {service.title}
               </h2>
-              <a
+              {/* <a
                 href={service.contact_url}
                 className="flex mt-8 w-max items-center text-white font-medium justify-center hover:opacity-70 transition duration-200"
               >
                 Contratar
                 <BsArrowRight color="#fff" size={22} className="ml-2" />
-              </a>
+              </a> */}
             </div>
             <div
               className="mb-6 text-lg lg:text-xl text-gray-300"

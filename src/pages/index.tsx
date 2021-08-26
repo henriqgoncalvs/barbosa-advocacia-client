@@ -25,7 +25,7 @@ export default function Home({ homepage, footer }: HomeProps) {
       <Header data={homepage.hero} contact={footer.whatsapp} />
       <PrevidenceServices data={homepage.servicos_previdencia} />
       <WhoAreWe data={homepage.quem_somos} />
-      <CTA data={homepage.cta} contact={footer.whatsapp} />
+      <CTA data={homepage.cta} />
       <BlogPosts data={homepage.blog_section} />
       <Footer data={footer} />
     </>

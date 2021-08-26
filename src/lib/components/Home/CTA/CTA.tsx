@@ -1,6 +1,6 @@
 import { CTAProps } from 'lib/types/api';
 
-function CTA({ data, contact }: { data: CTAProps; contact: string }) {
+function CTA({ data }: { data: CTAProps }) {
   return (
     <section className="relative py-16 bg-primary-c-500 text-white">
       <img
@@ -18,12 +18,12 @@ function CTA({ data, contact }: { data: CTAProps; contact: string }) {
           <h2 className="mt-8 mb-6 lg:mb-10 text-5xl font-semibold">
             {data.title}
           </h2>
-          <a
+          {/* <a
             className="inline-block w-full md:w-auto mb-2 mr-4 py-4 px-8 text-md uppercase font-bold leading-normal bg-white hover:bg-gray-400 text-primary-c-500 transition duration-200"
             href={`https://api.whatsapp.com/send?phone=${contact}`}
           >
             Entre em contato
-          </a>
+          </a> */}
         </div>
       </div>
     </section>
